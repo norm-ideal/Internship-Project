@@ -9,18 +9,18 @@ public class Mapping : MonoBehaviour
     public VR_Map LeftHand;
     public VR_Map RightHand;
     public Transform HeadLimit;
-    public Vector3 HeadOffSet;
+    public Vector3 HeadOffSet; // The initial Difference between the head and the body
 
     private void Start()
     {
-        HeadOffSet = transform.position - HeadLimit.position;
+        HeadOffSet = transform.position - HeadLimit.position; // The initial Difference between the head and the body
     }
 
 
     void Update()
     {
-        transform.position = HeadLimit.position + HeadOffSet;
-        transform.forward = Vector3.ProjectOnPlane(HeadLimit.up, Vector3.up).normalized;
+        transform.position = HeadLimit.position + HeadOffSet; //move the body according to the movement of the head 
+        transform.forward = Vector3.ProjectOnPlane(HeadLimit.up, Vector3.up).normalized; //only rotate to the Y-Axis
         Head.Map();
         LeftHand.Map();
         RightHand.Map();
@@ -37,7 +37,7 @@ public class Mapping : MonoBehaviour
         public void Map()
         {
             BoneTarget.position = VRTarget.TransformPoint(PositionOffSet); // TransformPoint : return the world position that the BoneTarget would have.
-            BoneTarget.rotation = VRTarget.rotation * Quaternion.Euler(PositionOffSet);
+            BoneTarget.rotation = VRTarget.rotation * Quaternion.Euler(RotationOffSet);
         }
 
     }
