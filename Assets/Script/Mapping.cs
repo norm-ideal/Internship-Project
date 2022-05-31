@@ -10,6 +10,7 @@ public class Mapping : MonoBehaviour
     public VR_Map RightHand;
     public Transform HeadLimit;
     public Vector3 HeadOffSet; // The initial Difference between the head and the body
+    public float turnSmoothness;
 
     private void Start()
     {
@@ -17,10 +18,10 @@ public class Mapping : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         transform.position = HeadLimit.position + HeadOffSet; //move the body according to the movement of the head 
-        transform.forward = Vector3.ProjectOnPlane(HeadLimit.up, Vector3.up).normalized; //only rotate to the Y-Axis
+        transform.forward = Vector3.ProjectOnPlane(HeadLimit.forward, Vector3.up).normalized; //up = green axis / forward = blue
         Head.Map();
         LeftHand.Map();
         RightHand.Map();
