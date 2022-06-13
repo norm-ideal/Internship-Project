@@ -25,6 +25,7 @@ public class Mapping : MonoBehaviour
         Head.Map();
         LeftHand.Map();
         RightHand.Map();
+        //transform.position.Set(transform.position.x, transform.position.y, transform.position.z - 1);
 
     }
     [System.Serializable]
